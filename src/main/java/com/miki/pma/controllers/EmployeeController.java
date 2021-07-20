@@ -17,8 +17,8 @@ public class EmployeeController {
 	EmployeeRepository emplorepo;
 	@GetMapping("/new")
 	public String employeeForm(Model model) {
-		Employee employee= new Employee();
-		model.addAttribute(employee);
+		Employee aEmployee= new Employee();
+		model.addAttribute("employee",aEmployee );
 		return "new-employee";
 	}
 	@PostMapping("/save")
