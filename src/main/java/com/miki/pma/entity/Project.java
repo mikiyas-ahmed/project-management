@@ -1,20 +1,23 @@
 package com.miki.pma.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 @Entity
 public class Project {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long projectId;
-	public long getProjectId() {
-		return projectId;
-	}
-	public void setProjectId(long projectId) {
-		this.projectId = projectId;
-	}
+	private String name;
+	private String stage; //NOTSTARTED FINISHED INPROGRESS
+	private String description;
+	@OneToMany(mappedBy="theProject")
+	private List<Employee> employees;
+	
 	public Project() {
 		super();
 	}
@@ -24,9 +27,15 @@ public class Project {
 		this.stage = stage;
 		this.description = description;
 	}
-	private String name;
-	private String stage; //NOTSTARTED FINISHED INPROGRESS
-	private String description;
+	
+	public long getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
+	}
+	
 	public String getName() {
 		return name;
 	}
