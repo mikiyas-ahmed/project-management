@@ -1,5 +1,7 @@
 package com.miki.pma.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +18,18 @@ public class ProjectController {
 	
 	@Autowired
 	ProjectRepository proRepo;
+	@GetMapping
+	public String displayProjects(Model model) {
+		List<Project> prolist= proRepo.findAll();
+		model.addAttribute("projectList",prolist);
+		return "project/list-projects";
+	}
 	
 	@GetMapping("/new")
 	public String displayProjectForm(Model model) {
 		Project aproject=new Project();
 		model.addAttribute("project",aproject);
-		return "new-project";
+		return "project/new-project";
 	}
 	@PostMapping("/save")
 	public String createProject(Project project, Model model) {

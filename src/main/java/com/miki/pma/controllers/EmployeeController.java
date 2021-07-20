@@ -1,5 +1,7 @@
 package com.miki.pma.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +17,17 @@ import com.miki.pma.entity.Employee;
 public class EmployeeController {
 	@Autowired
 	EmployeeRepository emplorepo;
+	@GetMapping
+	public String displayEmployee(Model model) {
+		List<Employee> emplo=emplorepo.findAll();
+		model.addAttribute("employeeList",emplo);
+		return "employee/list-employees";
+	}
 	@GetMapping("/new")
 	public String employeeForm(Model model) {
 		Employee aEmployee= new Employee();
 		model.addAttribute("employee",aEmployee );
-		return "new-employee";
+		return "employee/new-employee";
 	}
 	@PostMapping("/save")
 	public String regiterEmployee(Employee employee, Model model) {
