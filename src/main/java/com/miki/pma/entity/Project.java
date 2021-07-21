@@ -1,5 +1,6 @@
 package com.miki.pma.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,7 +15,7 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Project {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long projectId;
 	private String name;
 	private String stage; //NOTSTARTED FINISHED INPROGRESS
@@ -67,6 +68,12 @@ public class Project {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public void addEmployee(Employee emp) {
+		if(employees==null) {
+			employees= new ArrayList<>();
+		}
+		employees.add(emp);
 	}
 
 }

@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Employee {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long employeeId;
 	private String firstName;
 	private String lastname;
@@ -27,10 +27,11 @@ public class Employee {
 			inverseJoinColumns=@JoinColumn(name="project_id"))
 	private List<Project> projects;
 	
+	
 	public List<Project> getProjects() {
 		return projects;
 	}
-	public void setProject(List<Project> projects) {
+	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
 	public Employee() {
