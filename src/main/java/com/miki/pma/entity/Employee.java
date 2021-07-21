@@ -1,5 +1,7 @@
 package com.miki.pma.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,7 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Employee {
@@ -17,15 +20,18 @@ public class Employee {
 	private String firstName;
 	private String lastname;
 	private String email;
-	@ManyToOne(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REFRESH}
+	@ManyToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REFRESH}
 				, fetch= FetchType.LAZY)
-	@JoinColumn(name="project_Id")
-	private Project project;
-	public Project getProject() {
-		return project;
+	@JoinTable(name="employee_project",
+			joinColumns=@JoinColumn(name="employee_id"),
+			inverseJoinColumns=@JoinColumn(name="project_id"))
+	private List<Project> projects;
+	
+	public List<Project> getProjects() {
+		return projects;
 	}
-	public void setProject(Project project) {
-		this.project = project;
+	public void setProject(List<Project> projects) {
+		this.projects = projects;
 	}
 	public Employee() {
 		super();

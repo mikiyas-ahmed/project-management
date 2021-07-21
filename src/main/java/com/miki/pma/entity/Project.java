@@ -2,11 +2,15 @@ package com.miki.pma.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 @Entity
 public class Project {
 	@Id
@@ -15,7 +19,11 @@ public class Project {
 	private String name;
 	private String stage; //NOTSTARTED FINISHED INPROGRESS
 	private String description;
-	@OneToMany(mappedBy="project")
+	@ManyToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REFRESH}
+	, fetch= FetchType.LAZY)
+	@JoinTable(name="employee_project",
+			joinColumns=@JoinColumn(name="project_id"),
+			inverseJoinColumns=@JoinColumn(name="employee_id"))
 	private List<Employee> employees;
 	
 	public Project() {

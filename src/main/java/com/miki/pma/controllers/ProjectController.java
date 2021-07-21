@@ -39,13 +39,8 @@ public class ProjectController {
 		return "project/new-project";
 	}
 	@PostMapping("/save")
-	public String createProject(Project project,@RequestParam List<Long> employees ,Model model) {
+	public String createProject(Project project ,Model model) {
 		proRepo.save(project);
-		Iterable<Employee>emploList=emplorepo.findAllById(employees);
-		for(Employee emplo: emploList) {
-			emplo.setProject(project);
-			emplorepo.save(emplo);
-		}
 		return "redirect:/projects/new";
 	}
 }
