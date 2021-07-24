@@ -20,6 +20,7 @@ public class Project {
 	private String name;
 	private String stage; //NOTSTARTED FINISHED INPROGRESS
 	private String description;
+	
 	@ManyToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REFRESH}
 	, fetch= FetchType.LAZY)
 	@JoinTable(name="employee_project",

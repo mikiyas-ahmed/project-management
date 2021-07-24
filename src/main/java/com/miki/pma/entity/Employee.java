@@ -20,8 +20,9 @@ public class Employee {
 	private String firstName;
 	private String lastname;
 	private String email;
+	
 	@ManyToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST, CascadeType.REFRESH}
-				, fetch= FetchType.LAZY)
+	, fetch= FetchType.LAZY)
 	@JoinTable(name="employee_project",
 			joinColumns=@JoinColumn(name="employee_id"),
 			inverseJoinColumns=@JoinColumn(name="project_id"))
