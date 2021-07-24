@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.miki.pma.dao.EmployeeRepository;
 import com.miki.pma.dao.ProjectRepository;
 import com.miki.pma.dto.EmployeeProject;
@@ -21,13 +23,18 @@ public class HomeController {
 	@Autowired
 	EmployeeRepository empRepo;
 	@GetMapping("/")
-	public String displayProjects(Model model) {
+	public String displayProjects(Model model) throws JsonProcessingException {
 		List<Project> projects=proRepo.findAll();
 		model.addAttribute("projectList", projects);
+		
+		List<ProjectChart> projectChart=proRepo.findStage();
+		ObjectMapper objectMapper= new ObjectMapper();
+		String projectChartJson= objectMapper.writeValueAsString(projectChart);
+		model.addAttribute("projectChart",projectChartJson);
+		
 		List<EmployeeProject> employees=empRepo.employeeList();
 		model.addAttribute("employeeList",employees);
-		List<ProjectChart> proChart=proRepo.findStage();
-		model.addAttribute("projectChart",proChart);
+		
 		return "main/Home";
 	}
 }
