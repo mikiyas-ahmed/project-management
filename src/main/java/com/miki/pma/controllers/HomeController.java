@@ -20,7 +20,7 @@ import com.miki.pma.entity.Project;
 public class HomeController {
 
 	@Value("${version}")
-	private String ver;
+	public String ver;
 	@Autowired
 	ProjectRepository proRepo;
 	@Autowired
