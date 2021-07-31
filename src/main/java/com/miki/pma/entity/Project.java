@@ -12,11 +12,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 @Entity
 public class Project {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="project_seq")
+	@SequenceGenerator(name = "project_seq", allocationSize = 1)
 	private long projectId;
+	@Override
+	public String toString() {
+		return "Project [name=" + name + ", stage=" + stage + ", description=" + description + "]";
+	}
 	private String name;
 	private String stage; //NOTSTARTED FINISHED INPROGRESS
 	private String description;
