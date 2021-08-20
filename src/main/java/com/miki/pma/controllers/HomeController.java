@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.miki.pma.dao.EmployeeRepository;
-import com.miki.pma.dao.ProjectRepository;
 import com.miki.pma.dto.EmployeeProject;
 import com.miki.pma.dto.ProjectChart;
 import com.miki.pma.entity.Project;
+import com.miki.pma.services.EmployeeServices;
+import com.miki.pma.services.ProjectServices;
 
 @Controller
 public class HomeController {
@@ -22,9 +22,9 @@ public class HomeController {
 	@Value("${version}")
 	public String ver;
 	@Autowired
-	ProjectRepository proRepo;
+	ProjectServices proRepo;
 	@Autowired
-	EmployeeRepository empRepo;
+	EmployeeServices empRepo;
 	@GetMapping("/")
 	public String displayProjects(Model model) throws JsonProcessingException {
 		List<Project> projects=proRepo.findAll();

@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.miki.pma.dao.EmployeeRepository;
-import com.miki.pma.dao.ProjectRepository;
 import com.miki.pma.entity.Employee;
 import com.miki.pma.entity.Project;
+import com.miki.pma.services.EmployeeServices;
+import com.miki.pma.services.ProjectServices;
 
 @Controller
 @RequestMapping("/projects")
 public class ProjectController {
 	
 	@Autowired
-	ProjectRepository proRepo;
+	ProjectServices proRepo;
 	@Autowired
-	EmployeeRepository emplorepo;
+	EmployeeServices emplorepo;
 	@GetMapping
 	public String displayProjects(Model model) {
 		List<Project> prolist= proRepo.findAll();

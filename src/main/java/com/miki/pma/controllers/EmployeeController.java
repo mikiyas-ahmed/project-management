@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.miki.pma.dao.EmployeeRepository;
 import com.miki.pma.entity.Employee;
+import com.miki.pma.services.EmployeeServices;
 
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
 	@Autowired
-	EmployeeRepository emplorepo;
+	EmployeeServices emplorepo;
 	@GetMapping
 	public String displayEmployee(Model model) {
 		List<Employee> emplo=emplorepo.findAll();
