@@ -17,7 +17,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		auth.inMemoryAuthentication()
 			.withUser("myuser")
 				.password("pass")
-				.roles("USER");
+				.roles("USER")
+		.and()
+		.withUser("miki")
+		.password("pass")
+		.roles("USER");
 	}
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
