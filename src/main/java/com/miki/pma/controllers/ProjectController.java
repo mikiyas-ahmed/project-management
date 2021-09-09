@@ -40,6 +40,6 @@ public class ProjectController {
 	@PostMapping("/save")
 	public String createProject(Project project ,Model model) {
 		proRepo.save(project);
-		return "redirect:/projects/new";
+		return "redirect:/";
 	}
 }
