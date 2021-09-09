@@ -4,12 +4,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_accounts")
 public class UserAccount {
+	
+	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="user_accounts_seq")
+	@SequenceGenerator(name = "user_accounts_seq", allocationSize = 1)
 	@Column(name = "user_id")
 	private long userId;
 	
@@ -22,18 +27,15 @@ public class UserAccount {
 	
 	private boolean eenabled = true;
 
-	public UserAccount() {
-		
-	}
-
 	public long getUserId() {
 		return userId;
 	}
-
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-
+	public UserAccount() {
+		
+	}
 	public String getUserName() {
 		return userName;
 	}
