@@ -34,6 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.passwordEncoder(bCryptEncoder);
 	}
 	
+	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests()
 			.antMatchers("/projects/new").hasAnyRole("ADMIN")

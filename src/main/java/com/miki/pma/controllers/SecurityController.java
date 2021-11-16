@@ -17,19 +17,19 @@ public class SecurityController {
 	BCryptPasswordEncoder bCryptEncoder;
 	@Autowired
 	AccountRepository accountRepo;
-	
+	 
 	
 	@GetMapping("/register")
 	public String registerer(Model model) {
 		UserAccount useracc= new UserAccount();
-		model.addAttribute(useracc);
+		model.addAttribute("userAccount",useracc);
 		return "security/register";
 	}
-	@PostMapping("register/save")
+	@PostMapping("/register/save")
 	public String saveUser(Model model ,UserAccount user) {
 		user.setPassword(bCryptEncoder.encode(user.getPassword()));
 		accountRepo.save(user);
-		return "redirect:register/save";
+		return "redirect:/";
 	}
 	
 }

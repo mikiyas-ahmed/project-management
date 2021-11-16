@@ -18,7 +18,7 @@ public class UserAccount {
 	@Column(name = "user_id")
 	private long userId;
 	
-	@Column(name = "username")
+	@Column(name = "userName")
 	private String userName;
 	
 	private String email;

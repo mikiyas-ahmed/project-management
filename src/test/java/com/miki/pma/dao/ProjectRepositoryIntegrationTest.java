@@ -12,7 +12,6 @@ import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.miki.pma.dao.ProjectRepository;
 import com.miki.pma.entity.Project;
 
 @SpringBootTest
