@@ -18,14 +18,14 @@ public class UserAccount {
 	@Column(name = "user_id")
 	private long userId;
 	
-	@Column(name = "userName")
-	private String userName;
+	@Column(name = "username")
+	private String username;
 	
 	private String email;
 	
 	private String password;
 	
-	private boolean eenabled = true;
+	private boolean enabled = true;
 
 	public long getUserId() {
 		return userId;
@@ -36,12 +36,12 @@ public class UserAccount {
 	public UserAccount() {
 		
 	}
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String userName) {
+		this.username = userName;
 	}
 
 	public String getEmail() {
@@ -60,11 +60,11 @@ public class UserAccount {
 		this.password = password;
 	}
 
-	public boolean isEenabled() {
-		return eenabled;
+	public boolean isenabled() {
+		return enabled;
 	}
 
-	public void setEenabled(boolean eenabled) {
-		this.eenabled = eenabled;
+	public void setenabled(boolean eenabled) {
+		this.enabled = eenabled;
 	}
 }
